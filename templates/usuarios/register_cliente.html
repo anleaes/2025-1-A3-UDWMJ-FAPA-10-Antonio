@@ -1,0 +1,14 @@
+{% extends 'base.html' %} 
+
+{% block title %}Registrar Cliente{% endblock %} 
+
+{% block body %}
+    <h1>Registro de Cliente</h1>
+    <form method="post">
+        {% csrf_token %} 
+        {{ form.as_p }} 
+        <button type="submit">Registrar</button>
+    </form>
+    <p>Já tem uma conta? <a href="{% url 'usuarios:login' %}">Faça Login aqui</a>.</p>
+    <p>Você é um Leiloeiro? <a href="{% url 'usuarios:register_leiloeiro' %}">Registre-se como Leiloeiro</a>.</p>
+{% endblock body %} 

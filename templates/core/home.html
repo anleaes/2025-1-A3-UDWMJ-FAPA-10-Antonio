@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Leilão eevee{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+  <div class="text-center mb-4">
+    <img src="{% static 'img/eevee_logo.png' %}" alt="Logo Eevee" width="120" class="mb-3">
+    <h1 class="display-4" style="color: #A0522D;">Bem-vindo ao Leilão Eevee!</h1>
+    <p class="lead text-muted">A melhor experiência de leilões online com a fofura do Eevee.</p>
+  </div>
+
+  <div class="card shadow-sm mb-4" style="background-color: #F5F1EB;">
+  <div class="card-body">
+    <h5 class="card-title text-brown mb-3">Navegue pelo site:</h5>
+    <div class="d-flex flex-wrap gap-2">
+      <a href="{% url 'usuarios:register_cliente' %}" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-1">
+        <img src="{% static 'img/vaporeon_head.png' %}" alt="Vaporeon" width="100" height="100" />Registrar-se como Cliente
+      </a>
+      <a href="{% url 'usuarios:register_leiloeiro' %}" class="btn btn-outline-success btn-sm">
+        <img src="{% static 'img/leafeon_head.png' %}" alt="Leafeon" width="100" height="100" />Registrar-se como Leiloeiro</a>
+      <a href="{% url 'usuarios:login' %}" class="btn btn-outline-warning btn-sm">
+      <img src="{% static 'img/jolteon_head.png' %}" alt="Leafeon" width="100" height="100" />Fazer Login</a>
+      <a href="{% url 'cliente:listar_clientes' %}" class="btn btn-outline-info btn-sm">
+        <img src="{% static 'img/glaceon_head.png' %}" alt="Leafeon" width="100" height="100" />Listar Clientes</a>
+      <a href="{% url 'leiloeiro:listar_leiloeiros' %}" class="btn btn-outline-danger btn-sm">
+        <img src="{% static 'img/flareon_head.png' %}" alt="Leafeon" width="100" height="100" />Listar Leiloeiros</a>
+      <a href="{% url 'leilao:lista_leiloes' %}" class="btn btn-outline-secondary btn-sm">
+        <img src="{% static 'img/umbreon_head.png' %}" alt="Leafeon" width="100" height="100" />Ver Lista de Leilões</a>
+     <a href="/produto/cadastrar/" class="btn btn-outline-purple btn-sm d-flex align-items-center gap-2">
+        <img src="{% static 'img/espeon_head.png' %}" alt="Espeon" width="100" height="100" />Cadastrar Produto</a>
+     <a href="{% url 'usuarios:logout' %}" class="btn btn-sylveon">
+       <img src="{% static 'img/sylveon_head.png' %}" alt="Sylveon" width="100" height="100" />Deslogar</a>
+    </div>
+  </div>
+</div>
+
+
+  <div class="text-center">
+    {% if user.is_authenticated %}
+      <p class="fs-5">Olá, <strong>{{ user.username }}</strong>!</p>
+    {% else %}
+      <p class="text-muted">Você não está logado.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock body %}
+

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Lista de Leilões{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Leilões Cadastrados</h1>
+
+    {# Exibição das mensagens do Django (sucesso/erro) #}
+    {% if messages %}
+      <ul class="messages list-unstyled mt-3">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }} alert alert-{{ message.tags }}"{% endif %}>
+            {{ message }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if leiloes %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Leiloeiro</th>
+                    <th>Produtos</th>
+                    <th>Início</th>
+                    <th>Término</th>
+                    <th>Status</th>
+                    <th>Criação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for leilao in leiloes %}
+                <tr>
+                    <td>{{ leilao.leiloeiro.user.username }}</td>
+                    <td>
+                        {% for produto in leilao.produtos.all %}
+                            <div class="d-flex align-items-center mb-2">
+                                {% if produto.imagem %}
+                                    <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" width="50" height="50" class="me-2 rounded">
+                                {% else %}
+                                    <img src="{% static 'images/placeholder.png' %}" alt="Sem imagem" width="50" height="50" class="me-2 rounded">
+                                {% endif %}
+                                <span>{{ produto.nome }}</span>
+
+                                <a href="{% url 'lance:dar_lance' leilao.id produto.id %}" class="btn btn-sm btn-info ms-auto">Dar Lance</a>
+                            </div>
+                            {% if not forloop.last %}<hr>{% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ leilao.data_inicio|date:"d/m/Y H:i" }}</td>
+                    <td>{{ leilao.data_fim|date:"d/m/Y H:i" }}</td>
+                    <td>{{ leilao.get_status_display }}</td>
+                    <td>{{ leilao.data_criacao|date:"d/m/Y H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhum leilão cadastrado ainda.</p>
+    {% endif %}
+
+    <p class="mt-3">
+        <a href="{% url 'leilao:cadastrar_leilao' %}" class="btn btn-primary">Cadastrar Novo Leilão</a>
+    </p>
+</div>
+{% endblock body %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %} 
+
+{% block title %}Login{% endblock %}
+
+{% block body %} 
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %} 
+        {{ form.as_p }} 
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit">Entrar</button>
+    </form>
+    <p>Ainda não tem uma conta? <a href="{% url 'usuarios:register_cliente' %}">Registre-se como Cliente</a> ou <a href="{% url 'usuarios:register_leiloeiro' %}">Registre-se como Leiloeiro</a>.</p>
+{% endblock body %} 

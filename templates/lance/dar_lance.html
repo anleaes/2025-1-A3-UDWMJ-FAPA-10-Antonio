@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dar Lance{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Dar Lance no Leilão: {{ leilao.leiloeiro.user.username }}</h1>
+    <h2>Produto: {{ produto.nome }}</h2>
+
+    {% if produto.imagem %}
+        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" width="150" height="150" style="object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+    {% else %}
+        <img src="{% static 'images/placeholder.png' %}" alt="Sem Imagem" width="150" height="150" style="object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+    {% endif %}
+
+    <p>Valor Inicial: R$ {{ produto.valor_inicial|floatformat:2 }}</p>
+
+    {% if lance_atual %}
+        <p>Lance Atual Mais Alto: <span style="font-weight: bold; color: green;">R$ {{ lance_atual.valor|floatformat:2 }}</span> (por {{ lance_atual.cliente.user.username }} em {{ lance_atual.data_hora|date:"d/m/Y H:i" }})</p>
+    {% else %}
+        <p>Nenhum lance ainda. Seja o primeiro a dar um lance!</p>
+    {% endif %}
+
+    <p>Próximo Lance Mínimo: <span style="font-weight: bold; color: blue;">R$ {{ valor_minimo_proximo_lance|floatformat:2 }}</span></p>
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Dar Lance</button>
+    </form>
+
+    <div class="mt-4">
+        <a href="{% url 'leilao:lista_leiloes' %}" class="btn btn-secondary">Voltar para Leilões</a>
+    </div>
+
+    {# Exibição de mensagens Django (exibidas apenas uma vez) #}
+    {% if messages %}
+        <ul class="messages list-unstyled mt-3">
+            {% for message in messages %}
+                {% if forloop.first %}
+                    <li{% if message.tags %} class="{{ message.tags }} alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock body %}

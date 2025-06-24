@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastrar Novo Leilão{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">Cadastrar Novo Leilão</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} {# Isso renderiza cada campo do formulário em um parágrafo #}
+        <button type="submit" class="btn btn-primary">Cadastrar Leilão</button>
+    </form>
+    <p class="mt-3">
+        <a href="{% url 'leilao:lista_leiloes' %}" class="btn btn-secondary">Voltar para a Lista de Leilões</a>
+    </p>
+</div>
+{% endblock body %}

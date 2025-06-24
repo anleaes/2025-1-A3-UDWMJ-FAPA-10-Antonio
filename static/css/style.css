@@ -1,0 +1,106 @@
+/* Estilos gerais do corpo da página */
+body {
+    background-image: url('../img/fundo.jpg');
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Um cinza claro de fundo */
+    color: #333; /* Cor do texto padrão */
+    line-height: 1.6;
+}
+
+/* Estilos para o cabeçalho */
+header {
+    background-color: #28a745; /* Um verde bonito */
+    color: #ffffff; /* Texto branco */
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+/* Estilos para a navegação */
+nav ul {
+    list-style: none; /* Remove os marcadores de lista */
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex; /* Para alinhar os itens lado a lado */
+    justify-content: center; /* Centraliza os itens */
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none; /* Remove o sublinhado dos links */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Efeito de transição suave */
+}
+
+nav ul li a:hover {
+    color: #d4edda; /* Cor de hover mais clara */
+}
+
+/* Estilos para o conteúdo principal */
+main {
+    padding: 20px;
+    max-width: 900px; /* Largura máxima do conteúdo */
+    margin: 30px auto; /* Centraliza e adiciona margem */
+    background-color: #ffffff;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra suave */
+}
+
+h2 {
+    color: #0056b3; /* Cor azul para títulos secundários */
+}
+
+/* Estilos para links no conteúdo */
+main a {
+    color: #007bff; /* Azul padrão para links */
+    text-decoration: none;
+}
+
+main a:hover {
+    text-decoration: underline; /* Sublinhado ao passar o mouse */
+}
+
+/* Estilos para o rodapé */
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #333; /* Fundo escuro */
+    color: #ffffff;
+    margin-top: 40px; /* Margem superior para separar do conteúdo */
+}
+
+.btn-outline-purple {
+  color: #6f42c1 !important;               /* Texto roxo */
+  border: 2px solid #6f42c1 !important;   /* Borda roxa */
+  background-color: transparent !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-purple:hover {
+  background-color: #6f42c1 !important;   /* Fundo roxo no hover */
+  color: white !important;                 /* Texto branco no hover */
+  border-color: #6f42c1 !important;
+}
+.btn-sylveon {
+  color: #f47fa0;               /* Texto branco */
+  border: 2px solid #f47fa0; /* Rosa mais forte na borda */
+  transition: all 0.3s ease;
+}
+
+.btn-sylveon:hover {
+  background-color: #f47fa0; /* Rosa mais forte no hover */
+  color: #fff;               /* Texto branco */
+  border-color: #f47fa0;
+}
+
